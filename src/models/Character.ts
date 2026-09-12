@@ -4,7 +4,7 @@ import { Usable } from "./interfaces/Usable";
 import { Combatant } from "./interfaces/Combatant";
 
 
-export abstract class Character implements Combatant, Equippable, Usable {
+export abstract class Character implements Combatant, Equippable {
     private name: string;
     private profession: string;
     private health: number;
@@ -72,10 +72,6 @@ export abstract class Character implements Combatant, Equippable, Usable {
 		this.gold = value;
 	}
 
-    use(target: Character): void {
-        
-    }
-
     equip(character: Character): void {
         
     }
@@ -85,11 +81,15 @@ export abstract class Character implements Combatant, Equippable, Usable {
     }
 
     attack(target: Combatant): number {
-        
+      const damage = 20;
+
+    	target.takeDamage(damage);
+
+    	return damage;
     }
 
     takeDamage(amount: number): void {
-        
+        this.health -= amount;
     }
 
     isAlive(): boolean {
